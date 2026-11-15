@@ -21,3 +21,18 @@ Estimativa: assume XP/h constante.
 
 ## Se algo não aparecer
 O jogo pode mudar o layout. Os elementos lidos são: `#ativo-card` (`.pl-lv` e `.barra.xp`), `#tr-level`, `#tr-xp-txt`, `#sessao-xp-pokemon-h` e `#sessao-xp-treinador-h`. Se mudarem, é só ajustar `content.js`.
+
+## Segurança (para quem quiser conferir)
+O código tem só dois arquivos para ler: `manifest.json` (≈ 10 linhas) e `content.js`.
+
+- **Só roda em `pokeidle.io`** (e `www.pokeidle.io`). Está em `matches`, no `manifest.json`.
+- **Sem permissões especiais.** O `manifest.json` não pede `permissions` nem `host_permissions`: não acessa abas, histórico, cookies nem outros sites.
+- **Não faz nenhuma requisição de rede.** Não há `fetch`, `XMLHttpRequest`, `WebSocket` nem `sendBeacon` no código. Nada sai do seu navegador.
+- **Só lê a página.** Lê nível, XP e XP/h que o jogo já mostra e calcula localmente. Não clica em nada do jogo, não envia comandos e não altera dados.
+- **Não executa código de fora.** Não usa `eval` nem carrega scripts externos. O texto lido da página entra no painel por `textContent`; o `innerHTML` só recebe modelos fixos escritos no próprio código.
+- **Só guarda o nível alvo** (e se o painel está recolhido) no `localStorage` do navegador, na chave `pxp-...`.
+- **Sem conta, senha ou dado pessoal.** A extensão nunca lê credenciais ou o inventário.
+
+Dica: para conferir o que está instalado, compare os arquivos da pasta carregada em `chrome://extensions` com os deste repositório.
+
+Projeto não oficial, sem ligação com os criadores do PokeIdle.
