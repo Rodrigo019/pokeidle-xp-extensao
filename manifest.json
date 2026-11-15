@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "PokeIdle - Tempo para o nivel",
+  "version": "1.0.0",
+  "description": "Mostra quanto tempo falta para o pokemon (e o treinador) chegar a um nivel, lendo o XP/h do painel Sessao. So le a pagina; nao clica nem joga.",
+  "content_scripts": [
+    {
+      "matches": ["https://pokeidle.io/*", "https://www.pokeidle.io/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
